@@ -161,6 +161,9 @@ fieldset[disabled] .btn {
 
 /* Your CSS */
 /*          */
+.animation-content .explanation {
+    padding: 5px 20px;
+}
 .animation-content .explanation span.red_word_even {
     font-weight: bold;
     color: #FAAC00
