@@ -1,0 +1,178 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Я не знаю, як розпочати вирішення цієї місії
+    </div>
+    <div class="answer">
+        Ідея в тому, що потрібно пройтись по рядку і визначити які елементи та підрядки зустрічаються більше одного разу в рядку.
+        Визначити довжини таких елементів та підрядків і повернути найбільшу з них.
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Мені потрібна допомога, щоб продовжити місію
+    </div>
+    <div class="answer">
+        Тобі буде корисно прочитати трохи інформації про:
+        <a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a href='https://www.w3schools.com/python/ref_string_count.asp'>приклад</a> ),
+        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>приклад</a> ), та
+        <a href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_len.asp'>приклад</a> ),
+        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>приклад</a> ),
+        (<a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_range.asp'>приклад</a> ).
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Потрібна допомога!
+    </div>
+    <div class="answer">
+        Давай почнемо з того, що розберемося як нам сформувати різні підрядки з елементів які ідуть поруч. Використаємо
+        для цього два цикли for та додаткову змінну num.
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):  # В цьому циклі ми визначаємо на скільки буде
+            # змінюватись довжина підрядка за один цикл по заданому рядку
+    for i in range(len(line)):  # В цьому циклі ми визначаємо самі підрядки
+        substring = line[i:i+num]  # Підрядок формується цим виразом
+        print(substring)
+    num += 1  # Ця змінна буде зростати на 1 після кожного циклу
+            # Саме вона буде визначати довжину підрядка
+
+# output
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...
+        </pre>
+        Результат весь не показую задля економії місця. Спробуй у редакторі Python цей код.
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Що робити далі?
+    </div>
+    <div class="answer">
+        Далі потрібно все це пропустити через умову if. Нас цікавлять підрядки яких більше одного в рядку.
+        Використаємо str.count() як умову.
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num]) > 1:
+            substring = line[i:i+num]
+            print(substring)
+    num += 1
+
+# output
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...
+        </pre>
+        Як бачиш, наш результат змінився. Зникли підрядки які містили три символи і більше, адже вони зустрічаються лише
+        раз у рядку "аааа".
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я застряг. Мені потрібна маленька підказка.
+    </div>
+    <div class="answer">
+        Залишилось не так багато речей, які потрібно зробити. Тобі потрібно тепер створити список де ти зможеш зберігати
+        довжини підрядків які зустрічаються більше одного разу у рядку. Використай для цього метод list.append().
+        <pre class="brush: python">
+num = 1
+result = []
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num]) > 1:
+            result.append(len(line[i:i+num]))
+    num += 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Як мені повернути правильну відповідь?
+    </div>
+    <div class="answer">
+        Обгорни все у вираз функції та скористайся функцією max(). В якості аргументу default постав 0, це для того, що якщо рядок буде порожній, то
+        наша функція поверне 0.
+        <pre class="brush: python">
+def double_substring(line: sting) -> int:
+    num = 1
+    result = []
+    for a in range(len(line)):
+        for i in range(len(line)):
+            if line.count(line[i:i+num]) > 1:
+                result.append(len(line[i:i+num]))
+        num += 1
+    return max(result, default=0)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я хочу бути кращим з кращих ПРОГРАМІСТІВ!!! ПОКАЗАЖИ МЕНІ БІЛЬШЕ РІШЕНЬ!!1!!!11!
+    </div>
+    <div class="answer">
+        Добре, добре! Оце настрій!=)
+        Це рішення буде важкувато зрозуміти. Тут використовують модуль
+        <a href='https://docs.python.org/3.10/library/re.html'>"re"</a> . За допомогою виразу "re.findall(r'(?=(.*).*\1)', line)"
+        та функції len() ми з легкістю отримаємо бажаний результат.
+        <pre class="brush: python">
+import re
+
+def double_substring(line: sting) -> int:
+    return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я хочу більше!
+    </div>
+    <div class="answer">
+        Подивись на цей розв'язок. Побудований на циклі while та перевірках підрядків.
+        Логіка дещо схожа до нашого рішення, цикл while завершиться коли підрядок буде довжиною з цілий рядок.
+        Для повернення результату також використовується функція max().
+        <pre class="brush: python">
+def double_substring(line: sting) -> int:
+    res = 0
+    x = 1
+    while x <= len(line):
+        if line[:x] in line[x:]:
+            res = max(res,len(line[:x]))
+            x += 1
+        else:
+            line = line[1:]
+    return res
+        </pre>
+    </div>
+</div>
+
+
+</body>
