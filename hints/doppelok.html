@@ -4,8 +4,7 @@
         I don't know how to start solving this mission
     </div>
     <div class="answer">
-        The idea is to go through the string and determine which elements or substrings occur more than once in the string.
-         Determine the lengths of such elements or substrings and return the largest of them.
+        <p>The idea is to go through the string and determine which elements or substrings occur more than once in the string. Determine the lengths of such elements or substrings and return the largest of them.</p>
     </div>
 </div>
 <div class="question-answer">
@@ -13,17 +12,17 @@
         I need help to continue the mission
     </div>
     <div class="answer">
-        It will be useful for you to read some information about:
-        <a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
-        (<a href='https://www.w3schools.com/python/ref_string_count.asp'>example</a> ),
-        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
-        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>example</a> ), and
-        <a href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_len.asp'>example</a> ),
-        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
-        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>example</a> ),
-        (<a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a> ),
-        (<a href='https://www.w3schools.com/python/ref_func_range.asp'>example</a> ).
+        <p>It will be useful for you to read some information about:
+        <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_string_count.asp'>example</a>),
+        <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+        <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>),
+        <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>) and
+        <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>).</p>
     </div>
 </div>
 <div class="question-answer">
@@ -31,8 +30,8 @@
         Need help!
     </div>
     <div class="answer">
-        Let's start by figuring out how to form different substrings from elements that go next to each other.
-        For this, we will use two for loops and an additional variable num.
+        <p>Let's start by figuring out how to form different substrings from elements that go next to each other.
+        For this, we will use two for loops and an additional variable num.</p>
         <pre class="brush: python">
 line = "aaaa"
 num = 1
@@ -43,22 +42,24 @@ for a in range(len(line)):  # In this cycle, we determine how much the length
         print(substring)
     num += 1  # This variable will increase by 1 after each cycle
             # and it will determine the length of the substring
-
-# output
-a
-a
-a
-a
-aa
-aa
-aa
-a
-aaa
-aaa
-...
-...
         </pre>
-        I do not show the entire result to save space. Try this code in the Python editor.
+        <div class="output">
+            <p>Output:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...</pre>
+        </div>
+        <p>I do not show the entire result to save space. Try this code in the Python editor.</p>
     </div>
 </div>
 <div class="question-answer">
@@ -66,8 +67,8 @@ aaa
         What to do next?
     </div>
     <div class="answer">
-        Then you need to skip all this through the if condition. We are interested in substrings with more than one in a row.
-         Let's use str.count() as a condition.
+        <p>Then you need to skip all this through the if condition. We are interested in substrings with more than one in a row.
+         Let's use str.count() as a condition.</p>
         <pre class="brush: python">
 line = "aaaa"
 num = 1
@@ -77,23 +78,24 @@ for a in range(len(line)):
             substring = line[i:i+num]
             print(substring)
     num += 1
-
-# output
-a
-a
-a
-a
-aa
-aa
-aa
-a
-aa
-a
-...
-...
         </pre>
-        As you can see, our result has changed. Substrings containing three or more characters have disappeared,
-        because they occur only once in the string "aaaa".
+        <div class="output">
+            <p>Output:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...</pre>
+        </div>
+        <p>As you can see, our result has changed. Substrings containing three or more characters have disappeared, because they occur only once in the string "aaaa".</p>
     </div>
 </div>
 <div class="question-answer">
@@ -101,8 +103,7 @@ a
         I'm stuck. I need a little hint.
     </div>
     <div class="answer">
-        There aren't many things left to do. You now need to create a list where you can save the lengths of substrings
-        that occur more than once in a row. Use the list.append() method for this.
+        <p>There aren't many things left to do. You now need to create a list where you can save the lengths of substrings that occur more than once in a row. Use the list.append() method for this.</p>
         <pre class="brush: python">
 num = 1
 result = []
@@ -119,10 +120,11 @@ for a in range(len(line)):
         How do I return the correct answer?
     </div>
     <div class="answer">
-        Wrap everything in a function expression and use the max() function. 0 was set as the default argument,
-        so that if the string is empty, our function will return 0.
+        <p>Wrap everything in a function expression and use the max() function. 0 was set as the default argument, so that if the string is empty, our function will return 0.</p>
+        <div class="spoiler">
         <pre class="brush: python">
-def double_substring(line: sting) -> int:
+def double_substring(line: str) -> int:
+
     num = 1
     result = []
     for a in range(len(line)):
@@ -132,6 +134,7 @@ def double_substring(line: sting) -> int:
         num += 1
     return max(result, default=0)
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -139,17 +142,19 @@ def double_substring(line: sting) -> int:
         I want to be the best of the best PROGRAMMERS!!! SHOW ME MORE SOLUTIONS!!1!!!11!
     </div>
     <div class="answer">
-        Okay, okay! That's the spirit!=)
+        <p>Okay, okay! That's the spirit!=)
         This solution will be difficult to understand. The
-        <a href='https://docs.python.org/3.10/library/re.html'>"re"</a> module is used here. With the help of the
-        expression "re.findall(r'(?=(.*).*\1)', line)"
-        and the len() function, we will easily get the desired result.
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> module is used here. With the help of the expression "re.findall(r'(?=(.*).*\1)', line)" and the len() function, we will easily get the desired result.</p>
+        <div class="spoiler">
         <pre class="brush: python">
 import re
 
-def double_substring(line: sting) -> int:
+
+def double_substring(line: str) -> int:
+
     return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
         </pre>
+    </div>
     </div>
 </div>
 <div class="question-answer">
@@ -157,11 +162,11 @@ def double_substring(line: sting) -> int:
         I want more!
     </div>
     <div class="answer">
-        Look at this solution. Built on a while loop and substring checks. The logic is somewhat similar to our solution,
-        the while loop will end when the substring is a whole string long.
-         The max() function is also used to return the result.
+        <p>Look at this solution. Built on a while loop and substring checks. The logic is somewhat similar to our solution, the while loop will end when the substring is a whole string long. The max() function is also used to return the result.</p>
+        <div class="spoiler">
         <pre class="brush: python">
-def double_substring(line: sting) -> int:
+def double_substring(line: str) -> int:
+
     res = 0
     x = 1
     while x <= len(line):
@@ -173,7 +178,6 @@ def double_substring(line: sting) -> int:
     return res
         </pre>
     </div>
+    </div>
 </div>
-
-
 </body>

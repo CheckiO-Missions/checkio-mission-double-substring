@@ -21,24 +21,28 @@ TESTS = {
         {
             "input": ["aghtfghkofgh"],
             "answer": 3
-        }
+        },
     ],
     "Extra": [
         {
             "input": [""],
             "answer": 0
-        },{
+        },
+        {
             "input": ["abababaab"],
             "answer": 3
-        },{
+        },
+        {
             "input": ["arefhjaref!!"],
             "answer": 4
-        },{
+        },
+        {
             "input": ["aa"],
             "answer": 1
-        },{
+        },
+        {
             "input": ["aaaaa"],
             "answer": 2
-        }
+        },
     ]
 }
