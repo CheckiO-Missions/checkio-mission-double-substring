@@ -1,0 +1,183 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务
+    </div>
+    <div class="answer">
+        <p>我们的想法是浏览字符串并确定哪些元素或子串在字符串中出现超过一次。确定这些元素或子串的长度，并返回其中最大的元素或子串。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我需要帮助以继续完成任务
+    </div>
+    <div class="answer">
+        <p>请阅读以下信息：
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_string_count.asp'>example</a>)、
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>)、
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>)、
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>) 和
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>)。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        需要帮助
+    </div>
+    <div class="answer">
+        <p>让我们先弄清楚如何将相邻的元素组成不同的子串。
+        为此，我们将使用两个for循环和一个额外的变量num。</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):  # In this cycle, we determine how much the length
+            # of the substring will change in one cycle on the given line
+    for i in range(len(line)):  # In this cycle, we define the substrings themselves
+        substring = line[i:i+num]  # A substring is formed by this expression
+        print(substring)
+    num += 1  # This variable will increase by 1 after each cycle
+            # and it will determine the length of the substring
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...</pre>
+        </div>
+        <p>为了节省空间，我没有显示整个结果。在 Python 编辑器中试试这段代码。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步做什么？
+    </div>
+    <div class="answer">
+        <p>然后你需要跳过 if 条件。我们感兴趣的是一行中有一个以上的子串。
+         让我们使用str.count()作为条件。</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            substring = line[i:i+num]
+            print(substring)
+    num += 1
+        </pre>
+        <div class="output">
+            <p>输出结果：</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...</pre>
+        </div>
+        <p>正如您所看到的，我们的结果发生了变化。包含三个或三个以上字符的子串消失了，因为它们在字符串 "aaaa "中只出现一次。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我卡住了。我需要一点提示。
+    </div>
+    <div class="answer">
+        <p>剩下要做的事情不多了。现在您需要创建一个列表，保存连续出现多次的子串的长度。使用list.append()方法。</p>
+        <pre class="brush: python">
+num = 1
+result = []
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            result.append(len(line[i:i+num]))
+    num += 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何返回正确答案？
+    </div>
+    <div class="answer">
+        <p>使用函数表达式并使用max()函数。0被设置为默认参数，因此如果字符串为空，我们的函数将返回0。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    num = 1
+    result = []
+    for a in range(len(line)):
+        for i in range(len(line)):
+            if line.count(line[i:i+num])> 1:
+                result.append(len(line[i:i+num]))
+        num += 1
+    return max(result, default=0)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我想成为最优秀的程序员!!!告诉我更多的解决方案!!!1!!!11！
+    </div>
+    <div class="answer">
+        <p>好的，好的！这就是精神！=)
+        这个解决方案很难理解。这里使用了
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> 模块在这里被使用。在表达式 "re.findall(r'(?=(.*).*\1)', line) "和len()函数的帮助下，我们很容易得到想要的结果。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def double_substring(line: str) -> int:
+
+    return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
+        </pre>
+    </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我想要更多
+    </div>
+    <div class="answer">
+        <p>看看这个解决方案。建立在while循环和子串检查之上。其逻辑与我们的解决方案有些类似，当子串长度为一整条字符串时，while循环将结束。max()函数也用于返回结果。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    res = 0
+    x = 1
+    while x <= len(line):
+        if line[:x] in line[x:]:
+            res = max(res,len(line[:x]))
+            x += 1
+        else:
+            line = line[1:]
+    return res
+        </pre>
+    </div>
+    </div>
+</div>
+</body>
