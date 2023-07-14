@@ -1,0 +1,183 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Nie wiem, jak zacząć rozwiązywać tę misję
+    </div>
+    <div class="answer">
+        <p>Chodzi o to, aby przejść przez ciąg i określić, które elementy lub podciągi występują więcej niż raz w ciągu. Proszę określić długości takich elementów lub podciągów i zwrócić największy z nich.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Potrzebuję pomocy, aby kontynuować misję
+    </div>
+    <div class="answer">
+        <p>Przydatne będzie przeczytanie kilku informacji na temat:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_string_count.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>) i
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę o pomoc!
+    </div>
+    <div class="answer">
+        <p>Zacznijmy od zastanowienia się, jak utworzyć różne podciągi z elementów, które znajdują się obok siebie.
+        W tym celu użyjemy dwóch pętli for i dodatkowej zmiennej num.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):  # In this cycle, we determine how much the length
+            # of the substring will change in one cycle on the given line
+    for i in range(len(line)):  # In this cycle, we define the substrings themselves
+        substring = line[i:i+num]  # A substring is formed by this expression
+        print(substring)
+    num += 1  # This variable will increase by 1 after each cycle
+            # and it will determine the length of the substring
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...</pre>
+        </div>
+        <p>Nie pokazuję całego wyniku, aby zaoszczędzić miejsce. Proszę wypróbować ten kod w edytorze Pythona.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co robić dalej?
+    </div>
+    <div class="answer">
+        <p>Następnie proszę pominąć to wszystko w warunku if. Interesują nas podciągi z więcej niż jednym w rzędzie.
+         Proszę użyć str.count() jako warunku.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            substring = line[i:i+num]
+            print(substring)
+    num += 1
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...</pre>
+        </div>
+        <p>Jak widać, nasz wynik uległ zmianie. Podciągi zawierające trzy lub więcej znaków zniknęły, ponieważ występują tylko raz w ciągu "aaaa".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Utknąłem. Potrzebuję małej podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>Nie pozostało już wiele rzeczy do zrobienia. Musi Pan teraz utworzyć listę, na której można zapisać długości podciągów, które występują więcej niż raz w rzędzie. W tym celu proszę użyć metody list.append().</p>
+        <pre class="brush: python">
+num = 1
+result = []
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            result.append(len(line[i:i+num]))
+    num += 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak zwrócić poprawną odpowiedź?
+    </div>
+    <div class="answer">
+        <p>Proszę zawinąć wszystko w wyrażenie funkcyjne i użyć funkcji max(). 0 zostało ustawione jako domyślny argument, więc jeśli ciąg jest pusty, nasza funkcja zwróci 0.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    num = 1
+    result = []
+    for a in range(len(line)):
+        for i in range(len(line)):
+            if line.count(line[i:i+num])> 1:
+                result.append(len(line[i:i+num]))
+        num += 1
+    return max(result, default=0)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Chcę być najlepszym z najlepszych PROGRAMISTÓW!!! PROSZĘ POKAZAĆ MI WIĘCEJ ROZWIĄZAŃ!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Dobra, dobra! To jest duch!=)
+        To rozwiązanie będzie trudne do zrozumienia. Moduł
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> jest tutaj używany. Za pomocą wyrażenia "re.findall(r'(?=(.*).*\1)', line)" i funkcji len() z łatwością uzyskamy pożądany wynik.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def double_substring(line: str) -> int:
+
+    return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
+        </pre>
+    </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Chcę więcej!
+    </div>
+    <div class="answer">
+        <p>Proszę spojrzeć na to rozwiązanie. Zbudowane na pętli while i sprawdzaniu podciągów. Logika jest nieco podobna do naszego rozwiązania, pętla while zakończy się, gdy podciąg będzie miał długość całego ciągu. Funkcja max() jest również używana do zwrócenia wyniku.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    res = 0
+    x = 1
+    while x <= len(line):
+        if line[:x] in line[x:]:
+            res = max(res,len(line[:x]))
+            x += 1
+        else:
+            line = line[1:]
+    return res
+        </pre>
+    </div>
+    </div>
+</div>
+</body>
