@@ -1,0 +1,183 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Je ne sais pas comment commencer à résoudre cette mission
+    </div>
+    <div class="answer">
+        <p>L'idée est de parcourir la chaîne et de déterminer quels éléments ou sous-chaînes apparaissent plus d'une fois dans la chaîne. Déterminez les longueurs de ces éléments ou sous-chaînes et renvoyez la plus grande d'entre elles.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai besoin d'aide pour poursuivre la mission
+    </div>
+    <div class="answer">
+        <p>Il vous sera utile de lire des informations sur:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_string_count.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>) et
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Besoin d'aide!
+    </div>
+    <div class="answer">
+        <p>Commençons par déterminer comment former différentes sous-chaînes à partir d'éléments voisins.
+        Pour ce faire, nous utiliserons deux boucles for et une variable supplémentaire num.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):  # In this cycle, we determine how much the length
+            # of the substring will change in one cycle on the given line
+    for i in range(len(line)):  # In this cycle, we define the substrings themselves
+        substring = line[i:i+num]  # A substring is formed by this expression
+        print(substring)
+    num += 1  # This variable will increase by 1 after each cycle
+            # and it will determine the length of the substring
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...</pre>
+        </div>
+        <p>Je n'affiche pas le résultat complet pour économiser de l'espace. Essayez ce code dans l'éditeur Python.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>Ensuite, vous devez sauter tout cela en passant par la condition if. Nous sommes intéressés par les sous-chaînes qui ont plus d'une ligne.
+         Utilisons str.count() comme condition.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            substring = line[i:i+num]
+            print(substring)
+    num += 1
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...</pre>
+        </div>
+        <p>Comme vous pouvez le voir, notre résultat a changé. Les sous-chaînes contenant trois caractères ou plus ont disparu, car elles n'apparaissent qu'une seule fois dans la chaîne "aaaa".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je suis bloqué. J'ai besoin d'un petit conseil.
+    </div>
+    <div class="answer">
+        <p>Il ne reste plus beaucoup de choses à faire. Vous devez maintenant créer une liste dans laquelle vous pouvez enregistrer les longueurs des sous-chaînes qui apparaissent plus d'une fois à la suite. Utilisez pour cela la méthode list.append().</p>
+        <pre class="brush: python">
+num = 1
+result = []
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            result.append(len(line[i:i+num]))
+    num += 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment puis-je renvoyer la bonne réponse?
+    </div>
+    <div class="answer">
+        <p>Enveloppez le tout dans une expression de fonction et utilisez la fonction max(). 0 a été défini comme argument par défaut, de sorte que si la chaîne est vide, notre fonction renverra 0.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    num = 1
+    result = []
+    for a in range(len(line)):
+        for i in range(len(line)):
+            if line.count(line[i:i+num])> 1:
+                result.append(len(line[i:i+num]))
+        num += 1
+    return max(result, default=0)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je veux être le meilleur des meilleurs PROGRAMMEURS!!! MONTREZ-MOI PLUS DE SOLUTIONS!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>D'accord, d'accord! C'est l'esprit!=)
+        Cette solution sera difficile à comprendre. Le module
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> est utilisé ici. A l'aide de l'expression "re.findall(r'(?=(.*).*\1)', line)" et de la fonction len(), nous obtiendrons facilement le résultat souhaité.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def double_substring(line: str) -> int:
+
+    return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
+        </pre>
+    </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'en veux encore!
+    </div>
+    <div class="answer">
+        <p>Regardez cette solution. Construite sur une boucle while et des vérifications de sous-chaînes. La logique est quelque peu similaire à notre solution, la boucle while se termine lorsque la sous-chaîne est longue d'une chaîne entière. La fonction max() est également utilisée pour renvoyer le résultat.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    res = 0
+    x = 1
+    while x <= len(line):
+        if line[:x] in line[x:]:
+            res = max(res,len(line[:x]))
+            x += 1
+        else:
+            line = line[1:]
+    return res
+        </pre>
+    </div>
+    </div>
+</div>
+</body>
