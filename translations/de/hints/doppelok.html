@@ -1,0 +1,183 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Ich weiß nicht, wie ich mit der Lösung dieser Mission beginnen soll
+    </div>
+    <div class="answer">
+        <p>Die Idee ist, die Zeichenkette durchzugehen und zu bestimmen, welche Elemente oder Teilzeichenfolgen mehr als einmal in der Zeichenkette vorkommen. Ermitteln Sie die Längen dieser Elemente oder Teilzeichenfolgen und geben Sie die größte davon zurück.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche Hilfe, um die Aufgabe fortzusetzen
+    </div>
+    <div class="answer">
+        <p>Es wird für Sie nützlich sein, einige Informationen zu lesen:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=count#str.count'>str.count()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_string_count.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>) und
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Sie brauchen Hilfe!
+    </div>
+    <div class="answer">
+        <p>Beginnen wir damit, herauszufinden, wie wir verschiedene Teilstrings aus nebeneinander liegenden Elementen bilden können.
+        Dazu werden wir zwei for-Schleifen und eine zusätzliche Variable num verwenden.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):  # In this cycle, we determine how much the length
+            # of the substring will change in one cycle on the given line
+    for i in range(len(line)):  # In this cycle, we define the substrings themselves
+        substring = line[i:i+num]  # A substring is formed by this expression
+        print(substring)
+    num += 1  # This variable will increase by 1 after each cycle
+            # and it will determine the length of the substring
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aaa
+aaa
+...
+...</pre>
+        </div>
+        <p>Ich zeige nicht das gesamte Ergebnis, um Platz zu sparen. Probieren Sie diesen Code im Python-Editor aus.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>Dann müssen Sie das Ganze durch die if-Bedingung überspringen. Wir sind an Teilzeichenketten mit mehr als einer in einer Reihe interessiert.
+         Lassen Sie uns str.count() als Bedingung verwenden.</p>
+        <pre class="brush: python">
+line = "aaaa"
+num = 1
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            substring = line[i:i+num]
+            print(substring)
+    num += 1
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+a
+a
+a
+a
+aa
+aa
+aa
+a
+aa
+a
+...
+...</pre>
+        </div>
+        <p>Wie Sie sehen können, hat sich unser Ergebnis geändert. Teilzeichenketten mit drei oder mehr Zeichen sind verschwunden, da sie nur einmal in der Zeichenkette "aaaa" vorkommen.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich stecke fest. Ich brauche einen kleinen Hinweis.
+    </div>
+    <div class="answer">
+        <p>Es gibt nicht mehr viele Dinge zu tun. Sie müssen jetzt eine Liste erstellen, in der Sie die Längen von Teilzeichenfolgen speichern können, die mehr als einmal in einer Reihe vorkommen. Verwenden Sie dazu die Methode list.append().</p>
+        <pre class="brush: python">
+num = 1
+result = []
+for a in range(len(line)):
+    for i in range(len(line)):
+        if line.count(line[i:i+num])> 1:
+            result.append(len(line[i:i+num]))
+    num += 1
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie gebe ich die richtige Antwort zurück?
+    </div>
+    <div class="answer">
+        <p>Wickeln Sie alles in einen Funktionsausdruck ein und verwenden Sie die Funktion max(). 0 wurde als Standardargument festgelegt, so dass unsere Funktion 0 zurückgibt, wenn die Zeichenkette leer ist.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    num = 1
+    result = []
+    for a in range(len(line)):
+        for i in range(len(line)):
+            if line.count(line[i:i+num])> 1:
+                result.append(len(line[i:i+num]))
+        num += 1
+    return max(result, default=0)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich möchte der beste der besten PROGRAMMIERER werden!!! ZEIGEN SIE MIR MEHR LÖSUNGEN!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Okay, okay! Das ist die richtige Einstellung!=)
+        Diese Lösung wird schwer zu verstehen sein. Das
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> modul wird hier verwendet. Mit Hilfe des Ausdrucks "re.findall(r'(?=(.*).*\1)', line)" und der Funktion len() erhalten wir leicht das gewünschte Ergebnis.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def double_substring(line: str) -> int:
+
+    return max(map(len, re.findall(r'(?=(.*).*\1)', line)))
+        </pre>
+    </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich will mehr!
+    </div>
+    <div class="answer">
+        <p>Sehen Sie sich diese Lösung an. Sie basiert auf einer while-Schleife und Teilstring-Prüfungen. Die Logik ist ähnlich wie bei unserer Lösung. Die while-Schleife endet, wenn die Teilzeichenkette eine ganze Zeichenkette lang ist. Die Funktion max() wird ebenfalls verwendet, um das Ergebnis zurückzugeben.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def double_substring(line: str) -> int:
+
+    res = 0
+    x = 1
+    while x <= len(line):
+        if line[:x] in line[x:]:
+            res = max(res,len(line[:x]))
+            x += 1
+        else:
+            line = line[1:]
+    return res
+        </pre>
+    </div>
+    </div>
+</div>
+</body>
